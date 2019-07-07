@@ -1,7 +1,6 @@
 <template>
   <div>
-    <textarea name="blogEditor" id="blogEditor" rows="10" cols="80">
-        </textarea>
+    <textarea name="blogEditor" id="blogEditor"></textarea>
   </div>
 </template>
 <script>
@@ -31,9 +30,7 @@ export default {
     return {};
   },
   methods: {
-    checkTest(){
-      console.log("文档内容：" + CKEDITOR.instances.editor1.getData());
-    }
+  
   },
   async mounted() {
     if(!window.CKEDITOR) {
