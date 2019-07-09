@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const proxy  = 'http://localhost:8090';
+
 const ajax = config => new Promise((resolve, reject) => axios({
     ...config,
 }).then(res => {
@@ -17,7 +17,7 @@ const ajax = config => new Promise((resolve, reject) => axios({
  * @param {*} articleInfo  
  */
 export const releaseArticle = (articleInfo) => ajax({
-    url: proxy + '/article/release',
+    url: '/article/release',
     method: 'post',
     data:{
         articleInfo
