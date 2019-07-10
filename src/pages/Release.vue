@@ -78,6 +78,7 @@
               limit="1"
               :on-preview="handlePictureCardPreview"
               :on-remove="handleRemove"
+              :http-request="uploadHttp"
             >
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -100,7 +101,7 @@
 
 <script>
 import CKEditor from "../components/CKEditor";
-import { releaseArticle } from "../utils/api.js";
+import { releaseArticle,uploadSingleFile } from "../utils/api.js";
 export default {
   components: {
     CKEditor
@@ -146,6 +147,10 @@ export default {
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
+    },
+    async uploadHttp({file}){
+      let info = await uploadSingleFile(file);
+      console.log(info);
     },
     async release() {
       let vm = this;
