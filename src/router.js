@@ -7,8 +7,18 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'index',
+      name: 'login',
+      component: () => import('./pages/Login.vue')
+    },
+    {
+      path: '/release',
+      name: 'release',
       component: () => import('./pages/Release.vue')
-    }
+    },
+    // {
+    //   path: '/editor/upload',
+    //   name: 'release',
+    //   component: () => import('./pages/Release.vue')
+    // }
   ]
 })

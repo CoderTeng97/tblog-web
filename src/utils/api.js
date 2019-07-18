@@ -37,31 +37,12 @@ export const updateArticle = (articleInfo) => ajax({
     }
 })
 
-/**
- * 获取OSS上传凭证
- */
-export const uploadSingleFile1 = (file) => {
-    getPolicy().then(
-        policy => {
-            console.log(policy);
-            let formdata = new FormData();
-            let ossPath = policy.dir + "/145.jpg";
-            formdata.append('Filename', ossPath);
-            formdata.append('OSSAccessKeyId',policy.OSSAccessKeyId)
-            formdata.append('signature',policy.signature)
-            formdata.append('policy',policy.policy)
-            formdata.append('success_action_status',policy.success_action_status)
-            formdata.append('key', ossPath);
-            formdata.append('file', file);
-            console.log(formdata);
-            let info = ossUpload(policy.host, formdata);
-            console.log("upload:" + info);
-            return policy.host + "/" + ossPath;
-        }
-    );
-    
-}
 
+/**
+ * OSS文件上传
+ * @param {*} url 
+ * @param {*} formdata 
+ */
 function ossUpload(url, formdata) {
     return new Promise((resolve, reject) => {
         axios({
@@ -72,7 +53,9 @@ function ossUpload(url, formdata) {
         }).then(resolve)
     });
 }
-
+/**
+ * 获取OSS上传凭证
+ */
 function getPolicy(){
     return ajax({
         url:'oss/wpolicy',

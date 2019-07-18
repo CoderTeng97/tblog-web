@@ -150,7 +150,7 @@ export default {
     },
     async uploadHttp({file}){
       let info = await uploadSingleFile(file);
-      console.log(info);
+      console.log("文件上传" + info);
     },
     async release() {
       let vm = this;
