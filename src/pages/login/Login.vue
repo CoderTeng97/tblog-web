@@ -1,6 +1,7 @@
 <template>
   <div class="entry">
-    <el-row>
+    <login-swiper></login-swiper>
+    <!-- <el-row>
       <el-col :span="8" style="margin-top:10px;">
         <el-input id="email" v-model="email" placeholder="请输入帐号">
           <template slot="prepend">邮箱</template>
@@ -18,16 +19,20 @@
       <el-col :span="8" style="margin-top:10px;">
         <el-button id="login" @click="login"  style="width:100%" type="primary">登录</el-button>
       </el-col>
-    </el-row>
+    </el-row> -->
   </div>
 </template>
 
 <script>
+import LoginSwiper from './components/LoginSwiper'
 export default {
+  components: {
+    LoginSwiper
+  },
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
     };
   },
   methods:{
@@ -38,11 +43,18 @@ export default {
 };
 </script>
 
-<style  scoped>
-.entry {
-  margin-top: 20%;
-  margin-left: 40%;
-}
+<style lang="stylus" scoped>
+// 1vh = 1% * 视口高度  1rem = html 50px
+.entry 
+  height 100%
+  display block
+  height 100vh
+  overflow-x: hidden
+  position: relative
+  width: 100%
+  border 1px solid black 
+
+
 </style>
 
 

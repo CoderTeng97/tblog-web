@@ -7,7 +7,7 @@ export default new VueRouter({
     {
       path: '/',
       name: 'login',
-      component: () => import('./pages/Login.vue')
+      component: () => import('./pages/login/Login.vue')
     },
     {
       path: '/release',
