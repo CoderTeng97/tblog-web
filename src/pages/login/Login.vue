@@ -1,60 +1,129 @@
 <template>
-  <div class="entry">
-    <login-swiper></login-swiper>
-    <!-- <el-row>
-      <el-col :span="8" style="margin-top:10px;">
-        <el-input id="email" v-model="email" placeholder="请输入帐号">
+  <div class="login">
+    <div class="logo">
+      <a href="/">
+        <img src="../../assets/logo.png" alt="Logo" />
+      </a>
+    </div>
+    <!-- form -->
+    <div class="main">
+      <el-form ref="form" :model="loginForm" class="login-form" autocomplete="on" label-position="left">
+        <h4 class="title">
+          <div class="normal-title">
+            <a class="active" href="/sign_in">登 录</a>
+            <b>·</b>
+            <a id="js-sign-up-btn" class href="/sign_up">注 册</a>
+          </div>
+        </h4>
+
+        <el-input 
+          :class="username"
+          style="padding-bottom:30px;"
+          v-model="loginForm.username" 
+          placeholder="请输入账户" >
           <template slot="prepend">邮箱</template>
         </el-input>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="8" style="margin-top:10px;">
-        <el-input id="password" v-model="password" type="password" placeholder="请输入密码">
+
+        <el-input v-model="loginForm.password" placeholder="密码" style="padding-bottom:30px;">
           <template slot="prepend">密码</template>
         </el-input>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="8" style="margin-top:10px;">
-        <el-button id="login" @click="login"  style="width:100%" type="primary">登录</el-button>
-      </el-col>
-    </el-row> -->
+
+        <el-button
+          :loading="loading"
+          type="primary"
+          style="width:100%;margin-bottom:30px;"
+          @click.native.prevent="handleLogin"
+        >登录</el-button>
+      </el-form>
+    </div>
   </div>
 </template>
 
 <script>
-import LoginSwiper from './components/LoginSwiper'
+import LoginSwiper from "./components/LoginSwiper";
 export default {
   components: {
     LoginSwiper
   },
   data() {
     return {
-      email: "",
-      password: "",
+      loginForm: {
+        username: "",
+        password: ""
+      },
+      loading: false,
     };
   },
-  methods:{
-    login(){
-      this.$router.push({name:'release'});
+  methods: {
+    handleLogin() {
+      this.$router.push({ name: "release" });
+    },
+    username() {
+      
     }
   }
 };
 </script>
 
 <style lang="stylus" scoped>
+@import '~@/assets/styles/main.styl';
+
 // 1vh = 1% * 视口高度  1rem = html 50px
-.entry 
-  height 100%
-  display block
-  height 100vh
-  overflow-x: hidden
-  position: relative
-  width: 100%
-  border 1px solid black 
+.login {
+  min-height: 100%;
+  width: 100%;
+  background-color: $loginbgColor;
+  overflow: hidden;
+  text-align: center;
+  font-size: 0.28rem;
 
+  .logo {
+    position: absolute;
+    top: 1.12rem;
+    margin-left: 1rem;
+  }
 
+  .main {
+    margin: 1.2rem auto 0;
+    padding: 1rem 1rem 0.6rem;
+    background-color: #fff;
+    border-radius: 0.08rem;
+    box-shadow: 0 0 0.16rem rgba(0, 0, 0, 0.1);
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .login-form {
+      position: relative;
+      width: 520px;
+      max-width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+  }
+  .main .title {
+    margin: 0 auto 1rem;
+    padding: 10px;
+    font-weight: 400;
+    color: #969696;
+
+    .normal-title a {
+      font-size: 18px;
+      padding: 10px;
+      font-family: $logofont;
+      color: #ccc;
+    }
+
+    .normal-title b {
+      padding: 10px;
+      font-weight: 700;
+    }
+
+    .normal-title .active {
+      color: $logoColor;
+      font-weight: 700;
+      border-bottom: 2px solid #ea6f5a;
+    }
+  }
+}
 </style>
 
 
