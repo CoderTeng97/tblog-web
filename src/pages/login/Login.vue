@@ -1,12 +1,17 @@
 <template>
- <login-swiper></login-swiper>
+  <div class="login">
+    <login-swiper class="login-swiper"></login-swiper>
+    <login-from class="login-from"></login-from>
+  </div>
 </template>
 
 <script>
 import LoginSwiper from "./components/LoginSwiper";
+import LoginFrom from "./components/LoginFrom";
 export default {
   components: {
-    LoginSwiper
+    LoginSwiper,
+    LoginFrom
   },
   data() {
     return {
@@ -38,7 +43,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/assets/styles/main.styl';
+.login {
+  display flex;
+  align-content space-between
+
+  .login-swiper{
+    width: 460px;
+  }
+}  
 
 </style>
 
