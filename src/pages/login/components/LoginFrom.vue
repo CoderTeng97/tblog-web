@@ -14,18 +14,18 @@
       <h4>在下面输入您的详细信息</h4>
 
       <el-form 
-        status-icon
         ref="loginForm" 
         :model="loginForm" 
-        :rules="rules"
+        :rules="loginRules"
         :label-position="labelPosition" 
+        label-width="80px"
         >
-        <el-form-item label="登录名" prop="name">
-          <el-input v-model="loginForm.username" autocomplete="off"></el-input>
+        <el-form-item label="登录名" prop="name" >
+          <el-input v-model="loginForm.username"  clearable></el-input>
         </el-form-item>
 
         <el-form-item label="密 码" prop="pass">
-          <el-input type="password" v-model="loginForm.password" autocomplete="off"></el-input>
+          <el-input type="password" v-model="loginForm.password" show-password clearable></el-input>
         </el-form-item>
 
         <el-form-item label="用户类型" prop="role">
@@ -71,7 +71,7 @@ export default {
         }
       ],
     //   验证
-    rules: {
+    loginRules: {
         name: [
             { required: true, message: '请输入登录名', trigger: 'blur' }
         ],
@@ -83,7 +83,15 @@ export default {
   },
   methods: {
     handleLogin() {
-      this.$router.push({ name: "release" });
+        this.$refs.loginForm.validate((valid) => {
+          if (valid) {
+            alert('验证成功!');
+             this.$router.push({ name: "release" });
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
     },
   }
 };
