@@ -5,9 +5,14 @@ Vue.use(VueRouter)
 export default new VueRouter({
   routes: [
     {
-      path: '/',
+      path: '/login',
       name: 'login',
       component: () => import('./pages/login/Login.vue')
+    },
+    {
+      path: '/',
+      name: 'index',
+      component: () => import('./pages/Index/Index.vue')
     },
     {
       path: '/release',
