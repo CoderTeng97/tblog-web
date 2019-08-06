@@ -7,13 +7,13 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 import './config/element-config'
 import './assets/styles/reset.css'
-// import './assets/styles/normalize.css'
-
+import './assets/styles/iconfont/iconfont.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueCookies)
-Vue.use(VueAwesomeSwiper, /* { default global options } */)
+Vue.use(VueAwesomeSwiper)
+
 
 new Vue({
   router: VueRouter,
