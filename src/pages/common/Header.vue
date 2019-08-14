@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import store from "@/vuex/store";
-import { mapState, mapMutations } from "vuex";
+// import store from "@/vuex/store";
+// import { mapState, mapMutations } from "vuex";
 export default {
   name: "BlogHeader",
   data() {
@@ -94,11 +94,12 @@ export default {
   margin: 0;
   position: relative;
   background-color: $headerColor;
+  border: 1px solid $headerborderColor;
   height: 80px;
   line-height: 80px;
   width: 100%;
   color: #000;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 40px 0px;
+  // box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 40px 0px;
 }
 
 #topbar .topbar-left {

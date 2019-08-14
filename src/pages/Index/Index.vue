@@ -1,18 +1,22 @@
 <template>
     <div>
         <blog-header></blog-header>
+        <index-swiper></index-swiper>
     </div>
 </template>
 
 <script>
 import BlogHeader from "@/pages/common/Header"
+import IndexSwiper from '@/pages/Index/components/IndexSwiper'
 export default {
     components: {
-        BlogHeader
+        BlogHeader,
+        IndexSwiper
     }
 }
 </script>
 
-<style scope>
+<style lang="sass" scoped>
 
-</style>
+</style>>
+
