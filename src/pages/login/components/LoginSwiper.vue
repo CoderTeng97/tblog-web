@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/assets/styles/main.styl';
+@import '~@/assets/styles/variables.styl';
 
 .login-in {
   cursor: pointer;

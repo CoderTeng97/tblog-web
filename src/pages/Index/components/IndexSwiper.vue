@@ -10,24 +10,23 @@
       <h1>TBLOG</h1>
       <h3>你有你自己的博客 以及我们</h3>
       <p class="desc-title">社区贡献者</p>
-      <div>
-        <ul class="index-community">
-          <li v-for="(item, index) of AvatarImgUrl.slice(0,4)" :key="index">
-            <a href="#">
-              <img :src="item.imgUrl" :alt="item.title" class="community-img" />
-              <p class="community-name">{{item.title}}</p>
-            </a>
-          </li>
-          <li>
-            <a href="#" class>
-              <div class="communtiy-div">
-                <p class="iconfont">&#xe637;</p>
-              </div>
-              <p class="community-name">更多贡献者</p>
-            </a>
-          </li>
-        </ul>
-      </div>
+
+      <ul class="index-community">
+        <li v-for="(item, index) of AvatarImgUrl.slice(0,4)" :key="index">
+          <a href="#">
+            <img :src="item.imgUrl" :alt="item.title" class="community-img" />
+            <p class="community-name">{{item.title}}</p>
+          </a>
+        </li>
+        <li>
+          <a href="#" class>
+            <div class="communtiy-div">
+              <p class="iconfont">&#xe637;</p>
+            </div>
+            <p class="community-name">更多贡献者</p>
+          </a>
+        </li>
+      </ul>
 
       <div class="index-button">
         <el-row>
@@ -81,7 +80,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/assets/styles/main.styl';
+@import '~@/assets/styles/variables.styl';
 @import '~@/assets/styles/mixins.styl';
 
 /* 先把a的原有下划线样式给清除 */
@@ -94,7 +93,7 @@ a, a:link, a:visited, a:focus {
   background-color: $headerColor;
   border: 0.02rem solid $headerborderColor;
   width: 90%;
-  height: auto;
+  height: 8.4rem;
   margin: 0.5rem auto;
   padding: 0.5rem;
   display: flex;
@@ -103,25 +102,30 @@ a, a:link, a:visited, a:focus {
 
 .index-img {
   width: 45%;
+  overflow: hidden;
 
   img {
     width: 100%;
     cursor: pointer;
+    padding-bottom: 0.5rem;
   }
 }
 
 .index-desc {
   width: 45%;
+  cursor: pointer;
 
   h1 {
     font-size: 0.8rem;
     text-align: left;
+    ellipsis();
   }
 
   h3 {
     font-size: 0.42rem;
     color: #848282;
     padding: 0.4rem 0.4rem 0 0;
+    ellipsis();
   }
 
   .desc-title {
@@ -129,14 +133,16 @@ a, a:link, a:visited, a:focus {
     color: $headerfonthoverColor;
     padding: 0.4rem 0.4rem 0 0;
     cursor: pointer;
+    ellipsis();
   }
 }
 
 .index-community {
   display: flex;
+
   li {
     padding: 0.5rem 0.5rem 0 0;
-    position:relative;
+    position: relative;
   }
 
   a {
@@ -161,28 +167,9 @@ a, a:link, a:visited, a:focus {
     padding: 0.25rem 0 0 0;
     cursor: pointer;
     text-align: center;
+    position: relative;
     ellipsis();
   }
-
-  // 加载下划线淡入淡出 start
-  .community-name::after {
-    content: '';
-    display: block;
-    /* 开始时候下划线的宽度为0 */
-    width: 0;
-    height: 3px;
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    background: #000;
-    /* 这里我们设定所有改变都有动画效果，可以自己指定样式才有动画效果 */
-    transition: all 0.3s ease-in-out;
-  }
-
-  .community-name:hover::after {
-    width: 100%;
-  }
-  // 加载下划线淡入淡出 end
 
   .communtiy-div {
     height: 1.2rem;
@@ -203,8 +190,40 @@ a, a:link, a:visited, a:focus {
       color: #f76d8f;
     }
   }
+}
 
-  // 加载更多--悬浮改变样式 start
+// 按钮
+.index-button {
+  padding: 1rem 0.5rem 0 0;
+}
+
+.index-but {
+  border-color: $headerfonthoverColor;
+}
+
+/* 使用伪类给a下面添加下划线 */
+.index-desc {
+  /* css3为了区别伪类选择器把::改为:,使用:也会自动转为:: */
+  .community-name::after {
+    content: '';
+    display: block;
+    /* 开始时候下划线的宽度为0 */
+    width: 0;
+    height: 3px;
+    left: 0;
+    bottom: -10px;
+    /* 这里我们设定所有改变都有动画效果，可以自己指定样式才有动画效果 */
+    transition: all 0.3s ease-in-out;
+  }
+
+  .community-name::after {
+    background: $logoColor;
+  }
+
+  .community-name:hover::after {
+    width: 100%;
+  }
+
   .communtiy-div:hover {
     transform: scale(1.1);
   }
@@ -250,14 +269,6 @@ a, a:link, a:visited, a:focus {
       top: -10%;
     }
   }
-}
-
-.index-button {
-  padding: 1rem 0.5rem 0 0;
-}
-
-.index-but {
-  border-color: $headerfonthoverColor;
 }
 </style>
 

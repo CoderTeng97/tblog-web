@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~@/assets/styles/main.styl';
+@import '~@/assets/styles/variables.styl';
 
 // 1vh = 1% * 视口高度  1rem = html 50px
 .login {

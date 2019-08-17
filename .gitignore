@@ -21,5 +21,5 @@ yarn-error.log*
 *.sw?
 
 # 因自己电脑与公司电脑对应的node，npm版本不一样，故不提交 json文件。
-.package.json
-.package-lock.json
+package.json
+package-lock.json
