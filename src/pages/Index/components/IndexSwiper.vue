@@ -1,10 +1,17 @@
 <template>
   <div class="index-swiper">
     <div class="index-img">
-      <img
-        alt
-        src="https://s3.amazonaws.com/www-inside-design/uploads/2019/07/casestudyfeature-810x810.jpg"
-      />
+      <swiper :options="swiperOption">
+        <!-- slides -->
+        <swiper-slide v-for="(item,index) of SwiperList" :key="index">
+          <img :src="item.imgUrl" class="swiper-img" />
+        </swiper-slide>
+        <!-- Optional controls -->
+        <div class="swiper-pagination" slot="pagination"></div>
+        <div class="swiper-pagination swiper-pagination-white" slot="pagination"></div>
+        <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+        <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+      </swiper>
     </div>
     <div class="index-desc">
       <h1>TBLOG</h1>
@@ -42,6 +49,18 @@ export default {
   name: "IndexSwiper",
   data() {
     return {
+      swiperOption: {
+        loop: true,
+        autoplay: true,
+        pagination: {
+          el: ".swiper-pagination",
+          type: "bullets"
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        }
+      },
       AvatarImgUrl: [
         {
           link: "javascirpt:void(0);",
@@ -73,6 +92,20 @@ export default {
           imgUrl: require("@/assets/images/userimg.png"),
           title: "锐3"
         }
+      ],
+      SwiperList: [
+        {
+          imgUrl:
+            "//upload.jianshu.io/admin_banners/web_images/4686/b205842c3dd6736c233b052411fe1211f164fcaf.png?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540"
+        },
+        {
+          imgUrl:
+            "//upload.jianshu.io/admin_banners/web_images/4706/7fc6a088c85ad29ab9754a8f5a7569c83a9db0a4.png?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540"
+        },
+        {
+          imgUrl:
+            "//upload.jianshu.io/admin_banners/web_images/4680/f3832b8ec185f3772a31960a2494964132f29ce0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540"
+        }
       ]
     };
   }
@@ -83,10 +116,8 @@ export default {
 @import '~@/assets/styles/variables.styl';
 @import '~@/assets/styles/mixins.styl';
 
-/* 先把a的原有下划线样式给清除 */
-a, a:link, a:visited, a:focus {
-  text-decoration: none;
-  color: #000;
+.index-swiper >>> .swiper-pagination-bullet-active {
+  background-color: #ffffff;
 }
 
 .index-swiper {
@@ -104,10 +135,8 @@ a, a:link, a:visited, a:focus {
   width: 45%;
   overflow: hidden;
 
-  img {
+  .swiper-img {
     width: 100%;
-    cursor: pointer;
-    padding-bottom: 0.5rem;
   }
 }
 

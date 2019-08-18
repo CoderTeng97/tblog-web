@@ -7,28 +7,52 @@
         </a>
       </el-col>
 
-      <el-col :span="10" class="topbar-center">
+      <el-col :span="12" class="topbar-center">
         <ul>
           <li>
-            <a href="javascript:void(0)">首页</a>
+            <a href="javascript:void(0)" class="active">首页</a>
           </li>
           <li>
-            <a href="javascript:void(0)">网址数据监控</a>
+            <a href="javascript:void(0)">关注</a>
           </li>
           <li>
-            <a href="javascript:void(0)">关于博客</a>
+            <a href="javascript:void(0)">
+             
+                
+                <el-dropdown>
+                  <span class="el-dropdown-link">
+                     <el-badge is-dot class="item">
+                       消息
+                      </el-badge>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item icon="el-icon-plus">黄金糕</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus">狮子头</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-plus-outline">螺蛳粉</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-check">双皮奶</el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-circle-check">蚵仔煎</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+              
+            </a>
+          </li>
+          <li>
+            <el-autocomplete
+              v-model="params.search"
+              class="inline-input"
+              :fetch-suggestions="querySearch"
+              placeholder="请输入内容"
+              :trigger-on-focus="false"
+              @select="handleSelect"
+            >
+              <i slot="prefix" class="el-input__icon el-icon-search"></i>
+            </el-autocomplete>
           </li>
         </ul>
       </el-col>
 
-      <el-col :span="10" class="topbar-right">
+      <el-col :span="8" class="topbar-right">
         <ul>
-          <li>
-            <div class="icon-search">
-              <el-input type="text" placeholder="请输入搜索内容" class="search" v-model="params.search" />
-              <i class="el-icon-search"></i>
-            </div>
-          </li>
           <li>
             <button class="icon">
               <span class="iconfont ic-weixin">&#xe65d;</span>
@@ -46,8 +70,8 @@
           </li>
           <li class="right" @mouseenter="flag = !flag" @mouseleave="flag = !flag">
             <a href="javascript:void(0)" class="demo-type">
-                <el-avatar icon="el-icon-user-solid" > {{user.userName}}</el-avatar>
-            </a>  
+              <el-avatar icon="el-icon-user-solid">{{user.userName}}</el-avatar>
+            </a>
             <div class="msg" v-if="flag">
               <p @click="getUserInfo()">用户中心</p>
               <p class="exit" @click="exit()">退出</p>
@@ -72,7 +96,9 @@ export default {
       },
       user: {
         userName: "user"
-      }
+      },
+      restaurants: [],
+      timeout: null
     };
   },
   methods: {
@@ -82,6 +108,31 @@ export default {
     exit() {
       //退出
     },
+    loadAll() {
+      return [{ value: "hexo" }, { value: "vue" }, { value: "React" }];
+    },
+    querySearch(queryString, cb) {
+      var restaurants = this.restaurants;
+      var results = queryString
+        ? restaurants.filter(this.createFilter(queryString))
+        : restaurants;
+      // 调用 callback 返回建议列表的数据
+      cb(results);
+    },
+    createFilter(queryString) {
+      return restaurant => {
+        return (
+          restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) ===
+          0
+        );
+      };
+    },
+    handleSelect(item) {
+      console.log(item);
+    }
+  },
+  mounted() {
+    this.restaurants = this.loadAll();
   }
 };
 </script>
@@ -99,7 +150,10 @@ export default {
   line-height: 80px;
   width: 100%;
   color: #000;
-  // box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 40px 0px;
+
+  .active {
+    color: #ea6f5a !important;
+  }
 }
 
 #topbar .topbar-left {
@@ -112,18 +166,23 @@ export default {
 
 #topbar .topbar-center ul li {
   display: inline-block;
-  padding: 16px 40px;
+  padding: 15px 40px;
   text-decoration: none;
   transition: color 0.15s ease-out 0s;
-  font: bold 14px / 14px 'Maison Neue', sans-serif;
+  font: 500 17px / 30px arial, sans-serif;
+  cursor: pointer;
 }
 
 #topbar .topbar-center ul li a {
   color: $headerfontColor;
 }
 
-#topbar .topbar-center ul li a:hover {
-  color: $headerfonthoverColor;
+#topbar .topbar-center ul li:not(:last-child):hover {
+  background-color: $backgroundColorHover;
+}
+
+#topbar .topbar-center >>> .el-input__inner:focus {
+  border-color: #DCDFE6;
 }
 
 #topbar .topbar-right ul li {
@@ -141,7 +200,7 @@ export default {
   margin-top: 35px;
   margin-left: -25px;
   color: #000;
-  cursor pointer;
+  cursor: pointer;
 }
 
 #topbar .topbar-right li .icon {
@@ -170,11 +229,11 @@ export default {
 
 // 用户信息
 #topbar >>> .el-avatar {
-    display inline-table;  
+  display: inline-table;
 }
 
 #topbar .topbar-right .right:hover {
-    background-color #f5f5f5;    
+  background-color: #f5f5f5;
 }
 
 #topbar .topbar-right .right .msg {
@@ -188,11 +247,13 @@ export default {
   border-bottom: 3px solid #0195ff;
   background-color: #fff;
 }
+
 #topbar .topbar-right .right .msg p {
   height: 40px;
   line-height: 40px;
   width: 105px;
 }
+
 #topbar .topbar-right .right .msg p:hover {
   background-color: #0195ff;
 }

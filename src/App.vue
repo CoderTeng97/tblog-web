@@ -20,12 +20,19 @@ export default {
 </script>
 
 <style>
+
 #app {
   height: 100%;
-  font-family: "Inv Maison Neue", "Maison Neue", -apple-system, BlinkMacSystemFont, "Open Sans", open-sans, sans-serif;
 }
 body{
   margin: 0;
   padding: 0;
+  font-family: -apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+
 } 
+/* 先把a的原有下划线样式给清除 */
+a, a:link, a:visited, a:focus {
+  text-decoration: none;
+  color: #000;
+}
 </style>
