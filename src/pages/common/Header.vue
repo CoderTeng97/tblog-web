@@ -7,7 +7,7 @@
         </a>
       </el-col>
 
-      <el-col :span="12" class="topbar-center">
+      <el-col :span="11" class="topbar-center">
         <ul>
           <li>
             <a href="javascript:void(0)" class="active">首页</a>
@@ -17,26 +17,29 @@
           </li>
           <li>
             <a href="javascript:void(0)">
-             
-                
-                <el-dropdown>
-                  <span class="el-dropdown-link">
-                     <el-badge is-dot class="item">
-                       消息
-                      </el-badge>
-                  </span>
-                  <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item icon="el-icon-plus">黄金糕</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-plus">狮子头</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-plus-outline">螺蛳粉</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-check">双皮奶</el-dropdown-item>
-                    <el-dropdown-item icon="el-icon-circle-check">蚵仔煎</el-dropdown-item>
-                  </el-dropdown-menu>
-                </el-dropdown>
-              
+              <el-dropdown>
+                <span class="el-dropdown-link">
+                  <el-badge is-dot class="item">消息</el-badge>
+                </span>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>
+                    <span class="iconfont  header-center-icon">&#xe60d;</span>评论
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+                     <span class="iconfont header-center-icon">&#xe65b;</span>喜欢与赞
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+                     <span class="iconfont header-center-icon">&#xe685;</span>关注
+                  </el-dropdown-item>
+                  <el-dropdown-item> 
+                    <span class="iconfont header-center-icon">&#xe637;</span>其他提醒
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
             </a>
           </li>
           <li>
+            <!-- 搜索 -->
             <el-autocomplete
               v-model="params.search"
               class="inline-input"
@@ -51,31 +54,73 @@
         </ul>
       </el-col>
 
-      <el-col :span="8" class="topbar-right">
+      <el-col :span="9" class="topbar-right">
         <ul>
           <li>
-            <button class="icon">
-              <span class="iconfont ic-weixin">&#xe65d;</span>
-            </button>
+            <a href="javascript:void(0);">
+              <el-button type="danger" round class="article">
+                <span class="iconfont">&#xe652;</span>
+                写文章
+              </el-button>
+            </a>
           </li>
-          <li>
-            <button class="icon">
-              <span class="iconfont ic-weibo">&#xe629;</span>
-            </button>
-          </li>
-          <li>
-            <button class="icon">
-              <span class="iconfont ic-qq">&#xe7a0;</span>
-            </button>
-          </li>
+          <!-- 已登录状态 -->
           <li class="right" @mouseenter="flag = !flag" @mouseleave="flag = !flag">
             <a href="javascript:void(0)" class="demo-type">
-              <el-avatar icon="el-icon-user-solid">{{user.userName}}</el-avatar>
+              <el-dropdown class="avatar_drop">
+                <span class="el-dropdown-link">
+                  <el-avatar :src="user.avatar"></el-avatar>
+                  <i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                <el-dropdown-menu slot="dropdown" class="avatar_dorpul">
+                  <el-dropdown-item>
+                    <span class="iconfont iconheader">&#xe655;</span>我的主页
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+                    <span class="iconfont iconheader">&#xe667;</span>我的收藏
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+                    <span class="iconfont iconheader">&#xe63c;</span>我的喜欢
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+                    <span class="iconfont iconheader">&#xe62b;</span>设置
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+                    <span class="iconfont iconheader">&#xe613;</span>退出
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
             </a>
-            <div class="msg" v-if="flag">
-              <p @click="getUserInfo()">用户中心</p>
-              <p class="exit" @click="exit()">退出</p>
-            </div>
+          </li>
+          <!-- <li>
+            <a href="javascript:void(0);">
+              <el-button round class="regiter">注册</el-button>
+            </a>
+          </li>
+          <li>
+            <a href="javasciprt:void(0);" class="login">登录</a>
+          </li>-->
+
+          <li>
+            <a href="javascript:void(0);">
+              <button class="icon">
+                <span class="iconfont ic-qq">&#xe7a0;</span>
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <button class="icon">
+                <span class="iconfont ic-weixin">&#xe65d;</span>
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <button class="icon">
+                <span class="iconfont ic-weibo">&#xe629;</span>
+              </button>
+            </a>
           </li>
         </ul>
       </el-col>
@@ -84,8 +129,6 @@
 </template>
 
 <script>
-// import store from "@/vuex/store";
-// import { mapState, mapMutations } from "vuex";
 export default {
   name: "BlogHeader",
   data() {
@@ -95,7 +138,8 @@ export default {
         search: ""
       },
       user: {
-        userName: "user"
+        avatar:
+          "//upload.jianshu.io/users/upload_avatars/13918408/128ce514-9f4a-4d49-b862-776084905011?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120"
       },
       restaurants: [],
       timeout: null
@@ -140,16 +184,28 @@ export default {
 <style lang="stylus" scoped>
 @import '~@/assets/styles/variables.styl';
 
+>>> .el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover {
+  background-color: $backgroundColorHover;
+  color: #000000;
+}
+
+.el-dropdown-menu__item {
+  .iconheader, .header-center-icon {
+    color: $btnColor;
+    padding-right: 10px;
+  }
+}
+
 #topbar {
   padding: 0;
   margin: 0;
   position: relative;
-  background-color: $headerColor;
   border: 1px solid $headerborderColor;
   height: 80px;
   line-height: 80px;
   width: 100%;
   color: #000;
+  overflow: hidden;
 
   .active {
     color: #ea6f5a !important;
@@ -166,7 +222,7 @@ export default {
 
 #topbar .topbar-center ul li {
   display: inline-block;
-  padding: 15px 40px;
+  padding: 15px 30px;
   text-decoration: none;
   transition: color 0.15s ease-out 0s;
   font: 500 17px / 30px arial, sans-serif;
@@ -175,6 +231,10 @@ export default {
 
 #topbar .topbar-center ul li a {
   color: $headerfontColor;
+
+  .item {
+    font-size: 17px;
+  }
 }
 
 #topbar .topbar-center ul li:not(:last-child):hover {
@@ -189,6 +249,8 @@ export default {
   display: inline-block;
   margin-right: 25px;
   position: relative;
+  cursor: pointer;
+  float: right;
 }
 
 #topbar .topbar-right .icon-search {
@@ -225,6 +287,40 @@ export default {
 
 #topbar .topbar-right li .icon .ic-qq {
   color: #498ad5;
+}
+
+// 注册、登录、写文章
+#topbar .topbar-right {
+  .login {
+    color: #969696;
+    font-size: 15px;
+  }
+
+  .regiter {
+    color: $headerfontactiveColor;
+    border: 0.02rem solid $headerfontactiveColor;
+    font-weight: 10rem;
+    font-family: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif";
+  }
+
+  .regiter:hover {
+    border-color: #ec6149;
+    background-color: rgba(236, 97, 73, 0.05);
+    color: #ec6149;
+  }
+
+  .article {
+    font-family: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif";
+  }
+
+  .avatar_drop {
+    padding-top: 0.3rem;
+    height: 1rem;
+  }
+
+  >>> .el-icon-arrow-down {
+    position: relative;
+  }
 }
 
 // 用户信息
