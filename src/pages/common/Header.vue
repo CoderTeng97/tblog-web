@@ -92,16 +92,16 @@
               </el-dropdown>
             </a>
           </li>
-          <!-- <li>
+          <li>
             <a href="javascript:void(0);">
               <el-button round class="regiter">注册</el-button>
             </a>
           </li>
           <li>
             <a href="javasciprt:void(0);" class="login">登录</a>
-          </li>-->
+          </li>
 
-          <li>
+          <!-- <li>
             <a href="javascript:void(0);">
               <button class="icon">
                 <span class="iconfont ic-qq">&#xe7a0;</span>
@@ -121,7 +121,7 @@
                 <span class="iconfont ic-weibo">&#xe629;</span>
               </button>
             </a>
-          </li>
+          </li> -->
         </ul>
       </el-col>
     </el-row>

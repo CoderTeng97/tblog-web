@@ -37,7 +37,7 @@
 
       <div class="index-button">
         <el-row>
-          <el-button round class="index-but">更多关于此网站</el-button>
+          <el-button round class="index-more-but">更多关于此网站</el-button>
         </el-row>
       </div>
     </div>
@@ -121,10 +121,9 @@ export default {
 }
 
 .index-swiper {
-  background-color: $headerColor;
   border: 0.02rem solid $headerborderColor;
   width: 90%;
-  height: 8.4rem;
+  height: 7rem;
   margin: 0.5rem auto;
   padding: 0.5rem;
   display: flex;
@@ -159,7 +158,7 @@ export default {
 
   .desc-title {
     font-size: 14px;
-    color: $headerfonthoverColor;
+    color: $headerfontactiveColor;
     padding: 0.4rem 0.4rem 0 0;
     cursor: pointer;
     ellipsis();
@@ -226,9 +225,18 @@ export default {
   padding: 1rem 0.5rem 0 0;
 }
 
-.index-but {
-  border-color: $headerfonthoverColor;
+.index-more-but {
+  color: $headerfontactiveColor;
+  border: 0.02rem solid $headerfontactiveColor;
+  font-weight: 10rem;
+  font-family: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif";
 }
+
+.index-more-but:hover {
+    border-color: #ec6149;
+    background-color: rgba(236, 97, 73, 0.05);
+    color: #ec6149;
+  }
 
 /* 使用伪类给a下面添加下划线 */
 .index-desc {
