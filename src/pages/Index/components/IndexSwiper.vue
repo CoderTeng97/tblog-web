@@ -121,26 +121,27 @@ export default {
 }
 
 .index-swiper {
-  border: 0.02rem solid $headerborderColor;
-  width: 90%;
-  height: 7rem;
-  margin: 0.5rem auto;
+  // border: 0.02rem solid $headerborderColor;
+  width: 80%;
+  height: 6rem;
+  margin: 0rem auto;
   padding: 0.5rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .index-img {
-  width: 45%;
+  width: 55%;
   overflow: hidden;
 
   .swiper-img {
     width: 100%;
+    border-radius 8px;
   }
 }
 
 .index-desc {
-  width: 45%;
+  width: auto;
   cursor: pointer;
 
   h1 {
