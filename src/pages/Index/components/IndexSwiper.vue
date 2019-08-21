@@ -1,6 +1,11 @@
 <template>
   <div class="index-swiper">
     <div class="index-img">
+      <!-- <el-carousel :interval="5000" arrow="always">
+        <el-carousel-item v-for="(item,index) of SwiperList" :key="index">
+          <img :src="item.imgUrl" class="swiper-img" />
+        </el-carousel-item>
+      </el-carousel> -->
       <swiper :options="swiperOption">
         <!-- slides -->
         <swiper-slide v-for="(item,index) of SwiperList" :key="index">
@@ -136,7 +141,7 @@ export default {
 
   .swiper-img {
     width: 100%;
-    border-radius 8px;
+    border-radius: 8px;
   }
 }
 
@@ -234,10 +239,10 @@ export default {
 }
 
 .index-more-but:hover {
-    border-color: #ec6149;
-    background-color: rgba(236, 97, 73, 0.05);
-    color: #ec6149;
-  }
+  border-color: #ec6149;
+  background-color: rgba(236, 97, 73, 0.05);
+  color: #ec6149;
+}
 
 /* 使用伪类给a下面添加下划线 */
 .index-desc {
