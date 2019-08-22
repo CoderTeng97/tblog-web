@@ -228,7 +228,7 @@ export default {
 
 // 按钮
 .index-button {
-  padding: 1rem 0.5rem 0 0;
+  padding: .5rem 0.5rem 0 0;
 }
 
 .index-more-but {

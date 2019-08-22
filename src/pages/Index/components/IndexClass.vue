@@ -2,9 +2,6 @@
   <div class="index-class">
     <!-- 分类推荐 -->
     <div class="index-conter-left">
-      <div class="content-title">
-        <el-divider content-position="left">热门推荐</el-divider>
-      </div>
       <ul>
         <li v-for="(item, index) of articleList" :key="index">
           <a class="wrap-img" href="/p/f5ea40ee3af0" target="_blank" v-if="item.imgUrl != '' ">
@@ -31,19 +28,87 @@
       </ul>
     </div>
 
-    <!-- 热门推荐 -->
+    <!-- 专题分享 -->
     <div class="index-conter-right">
-      <div class="content-title">
-        <el-divider content-position="left">热门推荐</el-divider>
+      <span>课程推荐</span>
+      <div class="live-swiper">
+        <!-- swiper -->
+        <swiper :options="swiperOption">
+          <swiper-slide>
+            <a href="/ls/1650000018455856" class="live-video">
+              <img
+                src="https://live-static.segmentfault.com/390/819/3908194827-5cb03f8041b45_render"
+                alt="课程推荐"
+              />
+              <h5 class="live-video-title">TypeScript完全解读(26课时)</h5>
+              <!-- 评分 -->
+              <div class="mte">
+                <el-rate v-model="valuerate" disabled text-color="#ff9900"></el-rate>
+                <span>(1232人参与)</span>
+              </div>
+              <span class="live-video-price">
+                <span class="cur-price">￥169.00</span>
+                <del class="origin-price">￥269.00</del>
+              </span>
+            </a>
+          </swiper-slide>
+          <swiper-slide>
+             <a href="/ls/1650000018455856" class="live-video">
+              <img
+                src="https://live-static.segmentfault.com/390/819/3908194827-5cb03f8041b45_render"
+                alt="课程推荐"
+              />
+              <h5 class="live-video-title">TypeScript完全解读(26课时)</h5>
+              <!-- 评分 -->
+              <div class="mte">
+                <el-rate v-model="valuerate" disabled text-color="#ff9900"></el-rate>
+                <span>(1232人参与)</span>
+              </div>
+              <span class="live-video-price">
+                <span class="cur-price">￥169.00</span>
+                <del class="origin-price">￥269.00</del>
+              </span>
+            </a>
+          </swiper-slide>
+          <swiper-slide>
+             <a href="/ls/1650000018455856" class="live-video">
+              <img
+                src="https://live-static.segmentfault.com/390/819/3908194827-5cb03f8041b45_render"
+                alt="课程推荐"
+              />
+              <h5 class="live-video-title">TypeScript完全解读(26课时)</h5>
+              <!-- 评分 -->
+              <div class="mte">
+                <el-rate v-model="valuerate" disabled text-color="#ff9900"></el-rate>
+                <span>(1232人参与)</span>
+              </div>
+              <span class="live-video-price">
+                <span class="cur-price">￥169.00</span>
+                <del class="origin-price">￥269.00</del>
+              </span>
+            </a>
+          </swiper-slide>
+          <swiper-slide>
+             <a href="/ls/1650000018455856" class="live-video">
+              <img
+                src="https://live-static.segmentfault.com/390/819/3908194827-5cb03f8041b45_render"
+                alt="课程推荐"
+              />
+              <h5 class="live-video-title">TypeScript完全解读(26课时)</h5>
+              <!-- 评分 -->
+              <div class="mte">
+                <el-rate v-model="valuerate" disabled text-color="#ff9900"></el-rate>
+                <span>(1232人参与)</span>
+              </div>
+              <span class="live-video-price">
+                <span class="cur-price">￥169.00</span>
+                <del class="origin-price">￥269.00</del>
+              </span>
+            </a>
+          </swiper-slide>
+          <div class="swiper-scrollbar" slot="scrollbar"></div>
+        </swiper>
       </div>
-      <ul>
-        <li>
-          <a href="javascript:void(0);">
-            <p class="class-title-name">vue.config.js 配置</p>
-            <div></div>
-          </a>
-        </li>
-      </ul>
     </div>
   </div>
 </template>
@@ -53,8 +118,13 @@ export default {
   name: "IndexClass",
   data() {
     return {
-      imgWidth: "70%",
-      NoimgWidth: "100%",
+      valuerate: 5,
+      swiperOption: {
+        scrollbar: {
+          el: ".swiper-scrollbar",
+          hide: true
+        }
+      },
       articleList: [
         {
           title: "betterscroll 移动端最好的插件",
@@ -96,6 +166,11 @@ export default {
           ReleaseTime: this.dateFormat(new Date()),
           imgUrl: require("@/assets/images/index/2509688-5bd44d55ff3fe90d.png")
         }
+      ],
+      liveVideoList: [
+        {
+          
+        }
       ]
     };
   },
@@ -121,11 +196,11 @@ export default {
       // 拼接
       return (
         year +
-        "年" +
+        "-" +
         month +
-        "月" +
+        "-" +
         day +
-        "日 " +
+        " " +
         hours +
         ":" +
         minutes +
@@ -153,13 +228,17 @@ export default {
   width: 80%;
   height: auto;
   margin: 0rem auto;
-  padding: 0.5rem;
+  padding: 0 0.5rem 0.5rem 0.5rem;
   display: flex;
   justify-content: space-between;
 }
 
 .index-class .index-conter-left {
   width: 55%;
+
+  .index-divider {
+    color: #999;
+  }
 
   ul li {
     width: 100%;
@@ -264,6 +343,72 @@ export default {
 
 // 右边模块
 .index-conter-right {
-  width: 25%;
+  width: 41%;
+
+  .live-swiper {
+    background: #fafafa;
+    padding: 0.3rem;
+    padding-right: 0;
+    margin: 0.3rem 0 0.3rem 0;
+    border-radius: 0.1rem;
+
+    .live-video img {
+      width: 4rem;
+      height: 2.5rem;
+      border-radius: 0.1rem;
+    }
+
+    .live-video-title {
+      font-size: 0.28rem;
+      max-width: 4rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      line-height: 0.6rem;
+      height: 0.6rem;
+      ellipsis();
+    }
+
+    .mte {
+      display: flex;
+      justify-content: flex-start;
+
+      span {
+        color: #999999;
+        padding-left: 10px;
+        line-height: 19px;
+        height: 19px;
+      }
+    }
+
+    .live-video-price {
+      color: #999;
+      font-size: 12px;
+
+      span {
+        color: #ED1C24;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 35px;
+        height: 35px;
+      }
+
+      del {
+        margin-left 10px;
+        text-decoration line-through;
+      }
+    }
+
+    >>> .el-rate__icon {
+      margin-right: 0;
+    }
+
+    >>> .swiper-slide  {
+          width: 210px !important;
+    }
+  }
+}
+
+.index-conter-right span:first-child {
+  color: #999999;
 }
 </style>
