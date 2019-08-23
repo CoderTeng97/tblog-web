@@ -1,14 +1,10 @@
 <template>
   <div class="index-swiper">
     <div class="index-img">
-      <!-- <el-carousel :interval="5000" arrow="always">
-        <el-carousel-item v-for="(item,index) of SwiperList" :key="index">
-          <img :src="item.imgUrl" class="swiper-img" />
-        </el-carousel-item>
-      </el-carousel> -->
       <swiper :options="swiperOption">
         <!-- slides -->
-        <swiper-slide v-for="(item,index) of SwiperList" :key="index">
+        <swiper-slide v-for="(item,index) of SwiperList" :key="index"
+         >
           <img :src="item.imgUrl" class="swiper-img" />
         </swiper-slide>
         <!-- Optional controls -->
@@ -113,6 +109,12 @@ export default {
         }
       ]
     };
+  },
+  created() {
+
+  },
+  methods: {
+     
   }
 };
 </script>

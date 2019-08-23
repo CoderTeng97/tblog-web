@@ -34,80 +34,29 @@
       <div class="live-swiper">
         <!-- swiper -->
         <swiper :options="swiperOption">
-          <swiper-slide>
-            <a href="/ls/1650000018455856" class="live-video">
-              <img
-                src="https://live-static.segmentfault.com/390/819/3908194827-5cb03f8041b45_render"
-                alt="课程推荐"
-              />
-              <h5 class="live-video-title">TypeScript完全解读(26课时)</h5>
+          <swiper-slide v-for="(item, index) of liveVideoList" :key="index">
+            <a :href="item.urllink" class="live-video">
+              <img :src="item.imgUrl" :alt="item.livetitle" />
+              <h5 class="live-video-title">{{item.livetitle}}</h5>
               <!-- 评分 -->
               <div class="mte">
-                <el-rate v-model="valuerate" disabled text-color="#ff9900"></el-rate>
-                <span>(1232人参与)</span>
+                <el-rate v-model="item.liveRate" disabled text-color="#ff9900"></el-rate>
+                <span>{{item.livePeople}}</span>
               </div>
               <span class="live-video-price">
-                <span class="cur-price">￥169.00</span>
-                <del class="origin-price">￥269.00</del>
-              </span>
-            </a>
-          </swiper-slide>
-          <swiper-slide>
-             <a href="/ls/1650000018455856" class="live-video">
-              <img
-                src="https://live-static.segmentfault.com/390/819/3908194827-5cb03f8041b45_render"
-                alt="课程推荐"
-              />
-              <h5 class="live-video-title">TypeScript完全解读(26课时)</h5>
-              <!-- 评分 -->
-              <div class="mte">
-                <el-rate v-model="valuerate" disabled text-color="#ff9900"></el-rate>
-                <span>(1232人参与)</span>
-              </div>
-              <span class="live-video-price">
-                <span class="cur-price">￥169.00</span>
-                <del class="origin-price">￥269.00</del>
-              </span>
-            </a>
-          </swiper-slide>
-          <swiper-slide>
-             <a href="/ls/1650000018455856" class="live-video">
-              <img
-                src="https://live-static.segmentfault.com/390/819/3908194827-5cb03f8041b45_render"
-                alt="课程推荐"
-              />
-              <h5 class="live-video-title">TypeScript完全解读(26课时)</h5>
-              <!-- 评分 -->
-              <div class="mte">
-                <el-rate v-model="valuerate" disabled text-color="#ff9900"></el-rate>
-                <span>(1232人参与)</span>
-              </div>
-              <span class="live-video-price">
-                <span class="cur-price">￥169.00</span>
-                <del class="origin-price">￥269.00</del>
-              </span>
-            </a>
-          </swiper-slide>
-          <swiper-slide>
-             <a href="/ls/1650000018455856" class="live-video">
-              <img
-                src="https://live-static.segmentfault.com/390/819/3908194827-5cb03f8041b45_render"
-                alt="课程推荐"
-              />
-              <h5 class="live-video-title">TypeScript完全解读(26课时)</h5>
-              <!-- 评分 -->
-              <div class="mte">
-                <el-rate v-model="valuerate" disabled text-color="#ff9900"></el-rate>
-                <span>(1232人参与)</span>
-              </div>
-              <span class="live-video-price">
-                <span class="cur-price">￥169.00</span>
-                <del class="origin-price">￥269.00</del>
+                <span class="cur-price">{{item.Price}}</span>
+                <del class="origin-price">{{item.Originalprice}}</del>
               </span>
             </a>
           </swiper-slide>
           <div class="swiper-scrollbar" slot="scrollbar"></div>
         </swiper>
+      </div>
+
+      <div class="article-list">
+        <span>随笔档案</span>
+        
+
       </div>
     </div>
   </div>
@@ -120,10 +69,19 @@ export default {
     return {
       valuerate: 5,
       swiperOption: {
+        width: 210,
         scrollbar: {
           el: ".swiper-scrollbar",
           hide: true
-        }
+        },
+        // 自动播放
+        autoplay: {
+          delay: 3000,
+          stopOnLastSlide: false,
+          disableOnInteraction: false
+        },
+        // 滑动速度
+        speed: 800
       },
       articleList: [
         {
@@ -169,7 +127,44 @@ export default {
       ],
       liveVideoList: [
         {
-          
+          urllink: "/ls/1650000018455856",
+          imgUrl:
+            "https://live-static.segmentfault.com/390/819/3908194827-5cb03f8041b45_render",
+          livetitle: "TypeScript完全解读(26课时)",
+          liveRate: 5,
+          livePeople: "(1232 人参与)",
+          Price: "￥169.00",
+          Originalprice: "￥269.00"
+        },
+        {
+          urllink: "/ls/1650000020068802",
+          imgUrl:
+            "https://live-static.segmentfault.com/175/037/1750379765-5d53a394d5d3f_render",
+          livetitle: "Flutter 社区技术视频",
+          liveRate: 5,
+          livePeople: "(156 人参与)",
+          Price: "￥0.00",
+          Originalprice: ""
+        },
+        {
+          urllink: "/ls/1650000016221751",
+          imgUrl:
+            "https://live-static.segmentfault.com/374/225/374225961-5cb0501214dcf_render",
+          livetitle: "Vue技术栈开发实战(26课时)",
+          liveRate: 5,
+          livePeople: "(802 人参与)",
+          Price: "￥249.90",
+          Originalprice: "￥399.00"
+        },
+        {
+          urllink: "/ls/1650000016424063",
+          imgUrl:
+            "https://live-static.segmentfault.com/337/772/3377727865-5ca1d37aa726c_render",
+          livetitle: "iView 实战系列教程(21课时)",
+          liveRate: 5,
+          livePeople: "(727 人参与)",
+          Price: "￥249.00",
+          Originalprice: "￥299.00"
         }
       ]
     };
@@ -393,22 +388,14 @@ export default {
       }
 
       del {
-        margin-left 10px;
-        text-decoration line-through;
+        margin-left: 10px;
+        text-decoration: line-through;
       }
     }
 
     >>> .el-rate__icon {
       margin-right: 0;
     }
-
-    >>> .swiper-slide  {
-          width: 210px !important;
-    }
   }
-}
-
-.index-conter-right span:first-child {
-  color: #999999;
 }
 </style>
