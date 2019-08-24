@@ -1,9 +1,14 @@
 <template>
   <div class="index-class">
     <!-- 分类推荐 -->
-    <div class="index-conter-left">
+      <!-- v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="busy"
+      infinite-scroll-distance="10" -->
+    <div
+      class="index-conter-left"
+    >
       <ul>
-        <li v-for="(item, index) of articleList" :key="index">
+        <li v-for="(item, index) of articleList" :key="index" class="list-item">
           <a class="wrap-img" href="/p/f5ea40ee3af0" target="_blank" v-if="item.imgUrl != '' ">
             <img :src="item.imgUrl" alt="120" />
           </a>
@@ -30,15 +35,14 @@
 
     <!-- 专题分享 -->
     <div class="index-conter-right">
-      <span>课程推荐</span>
-      <div class="live-swiper">
-        <!-- swiper -->
+      <!-- 课程推荐 -->
+      <div class="live-swiper index-article">
+        <span class="live-span">课程推荐</span>
         <swiper :options="swiperOption">
           <swiper-slide v-for="(item, index) of liveVideoList" :key="index">
             <a :href="item.urllink" class="live-video">
               <img :src="item.imgUrl" :alt="item.livetitle" />
               <h5 class="live-video-title">{{item.livetitle}}</h5>
-              <!-- 评分 -->
               <div class="mte">
                 <el-rate v-model="item.liveRate" disabled text-color="#ff9900"></el-rate>
                 <span>{{item.livePeople}}</span>
@@ -53,10 +57,24 @@
         </swiper>
       </div>
 
+      <!-- 随笔档案 -->
       <div class="article-list">
-        <span>随笔档案</span>
-        
+        <span class="conter-span">随笔档案</span>
+        <ul>
+          <li v-for="(item, index) of articledatelist" :key="index">
+            <a href="javascript:void(0);">{{item.datetime}}</a>
+          </li>
+        </ul>
+      </div>
 
+      <!-- 推荐博客 -->
+      <div class="article-list">
+        <span class="conter-span">推荐博客</span>
+        <ul>
+          <li v-for="(item) of bloglist" :key="item.id">
+            <a :href="item.bloglink" target="_blank">{{item.blogtitle}}</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -67,7 +85,8 @@ export default {
   name: "IndexClass",
   data() {
     return {
-      valuerate: 5,
+      count: 0,
+      busy: true,
       swiperOption: {
         width: 210,
         scrollbar: {
@@ -84,6 +103,26 @@ export default {
         speed: 800
       },
       articleList: [
+        {
+          title: "betterscroll 移动端最好的插件",
+          Intr:
+            "概述 better-scroll 是一款重点解决移动端（已支持 PC）各种滚动场景需求的插件。它的核心是借鉴的 iscroll 的实现，它的 A...",
+          awesome: "12",
+          comment: "102",
+          Author: "squidbrother",
+          ReleaseTime: this.dateFormat(new Date()),
+          imgUrl: ""
+        },
+        {
+          title: "betterscroll 移动端最好的插件",
+          Intr:
+            "概述 better-scroll 是一款重点解决移动端（已支持 PC）各种滚动场景需求的插件。它的核心是借鉴的 iscroll 的实现，它的 A...",
+          awesome: "12",
+          comment: "102",
+          Author: "squidbrother",
+          ReleaseTime: this.dateFormat(new Date()),
+          imgUrl: require("@/assets/images/index/2509688-5bd44d55ff3fe90d.png")
+        },
         {
           title: "betterscroll 移动端最好的插件",
           Intr:
@@ -166,10 +205,71 @@ export default {
           Price: "￥249.00",
           Originalprice: "￥299.00"
         }
+      ],
+      articledatelist: [
+        {
+          datetime: "2019年 08月 24日"
+        },
+        {
+          datetime: "2019年 08月 24日"
+        },
+        {
+          datetime: "2019年 08月 24日"
+        },
+        {
+          datetime: "2019年 08月 24日"
+        },
+        {
+          datetime: "2019年 08月 24日"
+        },
+        {
+          datetime: "2019年 08月 24日"
+        },
+        {
+          datetime: "2019年 08月 24日"
+        },
+        {
+          datetime: "2019年 08月 24日"
+        },
+        {
+          datetime: "2019年 08月 24日"
+        },
+        {
+          datetime: "2019年 08月 24日"
+        }
+      ],
+      bloglist: [
+        {
+          id: "0001",
+          blogtitle: "Github",
+          bloglink: "https://github.com/"
+        },
+        {
+          id: "0003",
+          blogtitle: "码云",
+          bloglink: "https://gitee.com/"
+        },
+        {
+          id: "0004",
+          blogtitle: "掘金",
+          bloglink: "https://juejin.im/timeline/"
+        },
+        {
+          id: "0005",
+          blogtitle: "开源中国",
+          bloglink: "https://www.oschina.net/"
+        },
+        {
+          id: "0006",
+          blogtitle: "简书",
+          bloglink: "https://www.jianshu.com/"
+        }
       ]
     };
   },
-  computed: {},
+  computed: {
+    
+  },
   methods: {
     dateFormat: function(time) {
       var date = new Date(time);
@@ -202,6 +302,16 @@ export default {
         ":" +
         seconds
       );
+    },
+    loadMore: function() {
+      this.busy = true;
+
+      setTimeout(() => {
+        for (var i = 0, j = 10; i < j; i++) {
+          this.data.push({ name: count++ });
+        }
+        this.busy = false;
+      }, 1000);
     }
   }
 };
@@ -230,10 +340,6 @@ export default {
 
 .index-class .index-conter-left {
   width: 55%;
-
-  .index-divider {
-    color: #999;
-  }
 
   ul li {
     width: 100%;
@@ -287,19 +393,19 @@ export default {
     }
 
     .article-title-name:link { /* 未访问的链接 */
-      color: #000000;
+      color: $blackColor;
     }
 
     /* 未访问的链接 */
     .article-title-name:visited { /* 已访问的链接 */
-      color: #999999;
+      color: $lightgray;
     }
 
     .article {
       margin: 8px 0 8px;
       font-size: 13px;
       line-height: 24px;
-      color: #999;
+      color: $lightgray;
     }
 
     // 图标
@@ -326,11 +432,11 @@ export default {
       }
 
       .nickname, .meta-time {
-        color: #999;
+        color: $lightgray;
       }
 
       .nickname:hover {
-        color: #000;
+        color: $blackColor;
       }
     }
   }
@@ -338,15 +444,28 @@ export default {
 
 // 右边模块
 .index-conter-right {
-  width: 41%;
+  width: 40%;
 
-  .live-swiper {
+  .live-span {
+    line-height: 25px;
+    height: 25px;
+  }
+
+  .conter-span {
+    line-height: 35px;
+    font-size: 18px;
+    ellipsis();
+  }
+
+  .index-article {
     background: #fafafa;
     padding: 0.3rem;
     padding-right: 0;
-    margin: 0.3rem 0 0.3rem 0;
     border-radius: 0.1rem;
+  }
 
+  // 课程推荐
+  .live-swiper {
     .live-video img {
       width: 4rem;
       height: 2.5rem;
@@ -368,7 +487,7 @@ export default {
       justify-content: flex-start;
 
       span {
-        color: #999999;
+        color: $lightgray;
         padding-left: 10px;
         line-height: 19px;
         height: 19px;
@@ -376,7 +495,7 @@ export default {
     }
 
     .live-video-price {
-      color: #999;
+      color: $lightgray;
       font-size: 12px;
 
       span {
@@ -395,6 +514,30 @@ export default {
 
     >>> .el-rate__icon {
       margin-right: 0;
+    }
+  }
+
+  // 随笔档案
+  .article-list {
+    margin-top: 20px;
+
+    ul {
+      padding-left: 10px;
+    }
+
+    ul li {
+      margin: 10px 0;
+      ellipsis();
+
+      a {
+        font-size: 15px;
+        color: #636161;
+      }
+
+      a:hover {
+        color: $headerfontactiveColor;
+        text-decoration: underline;
+      }
     }
   }
 }
