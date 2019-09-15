@@ -129,7 +129,7 @@ export default {
 
 .index-swiper {
   // border: 0.02rem solid $headerborderColor;
-  width: 80%;
+  width: 100%;
   height: 6rem;
   margin: 0rem auto;
   padding: 0.5rem;

@@ -1,18 +1,18 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueRouter from './router'
-import ElementUI from 'element-ui'
+import VueRouter from './router/router'
 import VueCookies from 'vue-cookies'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import infiniteScroll from 'vue-infinite-scroll' //无限加载
 import 'swiper/dist/css/swiper.css'
 import './config/element-config'
 import './assets/styles/reset.css'
 import './assets/styles/iconfont/iconfont.css'
 
 Vue.config.productionTip = false
-Vue.use(ElementUI)
 Vue.use(VueCookies)
 Vue.use(VueAwesomeSwiper)
+Vue.use(infiniteScroll)
 
 
 new Vue({

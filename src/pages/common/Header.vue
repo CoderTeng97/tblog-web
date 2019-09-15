@@ -10,7 +10,9 @@
       <el-col :span="11" class="topbar-center">
         <ul>
           <li>
-            <a href="javascript:void(0)" class="active">首页</a>
+            <router-link to="/">
+              <a href="javascript:void(0)" class="active">首页</a>
+            </router-link>
           </li>
           <li>
             <a href="javascript:void(0)">关注</a>
@@ -23,15 +25,15 @@
                 </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item>
-                    <span class="iconfont  header-center-icon">&#xe60d;</span>评论
+                    <span class="iconfont header-center-icon">&#xe60d;</span>评论
                   </el-dropdown-item>
                   <el-dropdown-item>
-                     <span class="iconfont header-center-icon">&#xe65b;</span>喜欢与赞
+                    <span class="iconfont header-center-icon">&#xe65b;</span>喜欢与赞
                   </el-dropdown-item>
                   <el-dropdown-item>
-                     <span class="iconfont header-center-icon">&#xe685;</span>关注
+                    <span class="iconfont header-center-icon">&#xe685;</span>关注
                   </el-dropdown-item>
-                  <el-dropdown-item> 
+                  <el-dropdown-item>
                     <span class="iconfont header-center-icon">&#xe637;</span>其他提醒
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -57,12 +59,14 @@
       <el-col :span="9" class="topbar-right">
         <ul>
           <li>
-            <a href="javascript:void(0);">
-              <el-button type="danger" round class="article">
-                <span class="iconfont">&#xe652;</span>
-                写文章
-              </el-button>
-            </a>
+            <router-link to="/release">
+              <a href="javascript:void(0);">
+                <el-button type="danger" round class="article">
+                  <span class="iconfont">&#xe652;</span>
+                  写文章
+                </el-button>
+              </a>
+            </router-link>
           </li>
           <!-- 已登录状态 -->
           <li class="right" @mouseenter="flag = !flag" @mouseleave="flag = !flag">
@@ -93,12 +97,16 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
-              <el-button round class="regiter">注册</el-button>
-            </a>
+            <router-link to="/login">
+              <a href="javascript:void(0);">
+                <el-button round class="regiter">注册</el-button>
+              </a>
+            </router-link>
           </li>
           <li>
-            <a href="javasciprt:void(0);" class="login">登录</a>
+            <router-link to='/login'>
+              <a href="javasciprt:void(0);" class="login">登录</a>
+            </router-link>
           </li>
 
           <!-- <li>
@@ -121,7 +129,7 @@
                 <span class="iconfont ic-weibo">&#xe629;</span>
               </button>
             </a>
-          </li> -->
+          </li>-->
         </ul>
       </el-col>
     </el-row>

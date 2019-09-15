@@ -85,8 +85,7 @@ export default {
     handleLogin() {
         this.$refs.loginForm.validate((valid) => {
           if (valid) {
-            alert('验证成功!');
-             this.$router.push({ name: "release" });
+             this.$router.push({ name: "/" });
           } else {
             console.log('error submit!!');
             return false;
