@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 export default new VueRouter({
-  // mode: 'history', //用于浏览器不显示#
+  mode: 'history', //用于浏览器不显示#
   routes: [
     {
       path: '/login',
@@ -19,6 +19,11 @@ export default new VueRouter({
       path: '/release',
       name: 'release',
       component: () => import('@/pages/Release.vue')
+    },
+    {
+      path: '/article',
+      name: '文章',
+      component: () => import('@/pages/article/Article.vue')
     }
     // {
     //   path: '/editor/upload',
