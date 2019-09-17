@@ -31,7 +31,7 @@ module.exports = {
     devServer: {
         open: process.platform === 'darwin',
         host: '0.0.0.0', // 允许外部ip访问
-        port: 8090, // 设置项目的启动端口
+        port: 8091, // 设置项目的启动端口，前端
         https: false, // 启用https
         open: true, //配置自动启动浏览器
         overlay: {
@@ -40,7 +40,7 @@ module.exports = {
         },
         proxy: {
             '/api': {
-                target: 'http://localhost:8090/',
+                target: 'http://59.110.230.214:8090/', //调用接口地址
                 ws: true,
                 changeOrigin: true,
                 pathRewrite: {
