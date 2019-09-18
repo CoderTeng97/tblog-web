@@ -75,3 +75,15 @@ export const uploadSingleFile = async function (file){
     await ossUpload(policy.host,formdata);
     return policy.host + "/" + ossPath;
     }
+
+
+    export const login = (email,password) => ajax({
+        url: '/user/login',
+        method: 'post',
+        //dataType: 'JSONP', 
+        data: {
+            email,
+            password
+        }
+    })
+    
