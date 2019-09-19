@@ -39,7 +39,7 @@
           </el-form-item>
         </el-col>
         <el-col :span="18">
-          <el-form-item class="article-el-from">
+          <!-- <el-form-item class="article-el-from">
             <el-select
               v-model="lableTmp"
               multiple
@@ -51,7 +51,7 @@
             >
               <el-option></el-option>
             </el-select>
-          </el-form-item>
+          </el-form-item> -->
         </el-col>
       </el-row>
     </el-form>
