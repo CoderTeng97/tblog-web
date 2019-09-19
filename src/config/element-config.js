@@ -3,7 +3,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import {
     // Pagination,
-    // Dialog,
+    Dialog,
     Autocomplete,
     Avatar,
     Dropdown,
@@ -83,7 +83,7 @@ import {
   } from 'element-ui';
   
 //   Vue.use(Pagination);
-//   Vue.use(Dialog);
+  Vue.use(Dialog);
   Vue.use(Autocomplete);
   Vue.use(Avatar);
   Vue.use(Dropdown);
