@@ -1,18 +1,23 @@
 <template>
   <div>
     <blog-header></blog-header>
-     <blog-bottom></blog-bottom>
+
+    <article-index></article-index>
+
+    <blog-bottom></blog-bottom>
   </div>
 </template>
 
 <script>
 import BlogHeader from "@/pages/common/Header";
 import BlogBottom from "@/pages/common/Bottom"; //底部
+import ArticleIndex from "@/pages/article/components/ArticleIndex"; //发布文章
 export default {
   name: 'BlogArticle',
   components: {
     BlogHeader,
-    BlogBottom
+    BlogBottom,
+    ArticleIndex
   }
 }
 </script>

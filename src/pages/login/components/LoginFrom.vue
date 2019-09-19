@@ -86,14 +86,7 @@ export default {
     async handleLogin() {
       console.log(this.loginForm)
       let result =  await login(this.loginForm.username,this.loginForm.password)
-        // this.$refs.loginForm.validate((valid) => {
-        //   if (valid) {
-        //      this.$router.push({ name: "/" });
-        //   } else {
-        //     console.log('error submit!!');
-        //     return false;
-        //   }
-        // });
+       
     },
   }
 };

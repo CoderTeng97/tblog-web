@@ -59,7 +59,7 @@
       <el-col :span="9" class="topbar-right">
         <ul>
           <li>
-            <router-link to="/release">
+            <router-link to="/article">
               <a href="javascript:void(0);">
                 <el-button type="danger" round class="article">
                   <span class="iconfont">&#xe652;</span>

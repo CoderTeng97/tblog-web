@@ -166,7 +166,7 @@ export default {
 };
 </script>
     
-<style scope>
+<style scoped>
 .container {
   padding: 0 5%;
 }
