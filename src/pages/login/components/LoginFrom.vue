@@ -5,7 +5,10 @@
       <div class="login-from-head-text">
         <font>没有账户？</font>
       </div>
-      <button role="button" class="login-form-head-but">开始吧</button>
+      <router-link 
+        to="/registry">
+        <button role="button" class="login-form-head-but">开始吧</button>
+      </router-link>
     </div>
 
     <!-- from 表单 -->
@@ -14,33 +17,23 @@
       <h4>在下面输入您的详细信息</h4>
 
       <el-form 
-        ref="loginForm" 
-        :model="loginForm" 
-        :rules="loginRules"
+        ref="ruleForm" 
+        :model="ruleForm" 
+        :rules="rules"
         :label-position="labelPosition" 
         label-width="80px"
+        status-icon
         >
-        <el-form-item label="登录名" prop="name" >
-          <el-input v-model="loginForm.username"  clearable></el-input>
+        <el-form-item label="用户名" prop="email" >
+          <el-input v-model="ruleForm.email" type="text"></el-input>
         </el-form-item>
 
-        <el-form-item label="密 码" prop="pass">
-          <el-input type="password" v-model="loginForm.password" show-password clearable></el-input>
+        <el-form-item label="密 码" prop="password">
+          <el-input type="password" v-model="ruleForm.password" show-password></el-input>
         </el-form-item>
-
-        <el-form-item label="用户类型" prop="role">
-          <el-select v-model="loginForm.roletype" style="width:100%;">
-            <el-option
-              v-for="(item, index) in options"
-              :key="index"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-
-        <el-form-item style="text-align: center;">
-          <el-button type="primary" class="row-login" @click="handleLogin">登 录</el-button>
+        
+        <el-form-item style="text-align: center;padding-top: 10px;">
+          <el-button type="primary" class="row-login" @click="handleLogin('ruleForm')">登 录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -48,46 +41,57 @@
 </template>
 
 <script>
-import {login} from "../../../utils/api"
+import { login } from "@/api/login"
+import { setToken } from "@/utils/auth"
+import { Message } from 'element-ui'
 export default {
   name: "LoginFrom",
   data() {
     return {
-        // label对齐方式，默认left
+      loading: false,
       labelPosition: "top",
-      loginForm: {
-        username: "",
-        password: "",
-        roletype: "开发者"
+      ruleForm: {
+        email: "18716664880@163.com",
+        password: "123456",
       },
-    //   用户类型
-      options: [
-        {
-          value: "贡献值",
-          label: "贡献值"
-        },
-        {
-          value: "开发者",
-          label: "开发者"
-        }
-      ],
-    //   验证
-    loginRules: {
-        name: [
-            { required: true, message: '请输入登录名', trigger: 'blur' }
-        ],
-        pass: [
-            { required: true, message: '请输入密码', trigger: 'blur' }
-        ],
-    }
+      rules: {
+          email: [
+              { required: true, message: '请输入用户名', trigger: 'blur' },
+          ],
+          password: [
+              { required: true, message: '请输入密码', trigger: 'blur' }
+          ],
+      }
     };
   },
   methods: {
-    async handleLogin() {
-      console.log(this.loginForm)
-      let result =  await login(this.loginForm.username,this.loginForm.password)
-       
-    },
+    // 登录接口
+    async handleLogin(ruleForm) {
+       this.$refs[ruleForm].validate((valid) => {
+          if (valid) {
+            this.loading = true
+            let userinfo = this.ruleForm;
+             login(userinfo.email, userinfo.password).then(res => {
+              this.loading = false
+              if(res && res.code === 200) {
+                let data = res.data;
+                setToken("Token",data.token)
+							  this.$router.push({ path: '/' });
+              }
+              if(res == null) {
+                 Message({
+                  title: '用户名或密码错误',
+                  message: msg,
+                  duration: 0
+                })
+              }
+						})
+          } else {
+            return false;
+          }
+        });
+    }
+
   }
 };
 </script>
@@ -189,6 +193,10 @@ export default {
   letter-spacing: 0.125px;
   color: rgb(34, 37, 43);
   margin-bottom: 32px;
+}
+
+.row-login {
+  width 100%;
 }
 
 @media (min-width: 600px) {

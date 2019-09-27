@@ -97,7 +97,7 @@
             </a>
           </li>
           <li>
-            <router-link to="/login">
+            <router-link to="/registry">
               <a href="javascript:void(0);">
                 <el-button round class="regiter">注册</el-button>
               </a>

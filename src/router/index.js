@@ -6,14 +6,19 @@ export default new VueRouter({
   mode: 'history', //用于浏览器不显示#
   routes: [
     {
+      path: '/',
+      name: 'index',
+      component: () => import('@/pages/Index/Index.vue')
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('@/pages/login/Login.vue')
     },
     {
-      path: '/',
-      name: 'index',
-      component: () => import('@/pages/Index/Index.vue')
+      path: '/registry',
+      name: 'registry',
+      component: () => import('@/pages/registry/Registry.vue')
     },
     {
       path: '/release',
