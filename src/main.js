@@ -7,6 +7,7 @@ import 'swiper/dist/css/swiper.css'
 import './config/element-config'
 import './assets/styles/reset.css'
 import './assets/styles/iconfont/iconfont.css'
+import '@/components/icons/svg'
 
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)

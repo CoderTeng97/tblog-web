@@ -93,7 +93,7 @@ export default {
     };
   },
   methods: {
-    // 登录接口
+    // 注册接口
     async handleRegistry(ruleForm) {
       this.$refs[ruleForm].validate(valid => {
         if (valid) {

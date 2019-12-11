@@ -13,15 +13,21 @@ import BlogHeader from "@/pages/common/Header";
 import BlogBottom from "@/pages/common/Bottom"; //底部
 import ArticleIndex from "@/pages/article/components/ArticleIndex"; //发布文章
 export default {
-  name: 'BlogArticle',
+  name: "BlogArticle",
   components: {
     BlogHeader,
     BlogBottom,
     ArticleIndex
+  },
+  data() {
+    return{
+      
+    }
+  },
+  methods: {
+  
   }
-}
+};
 </script>
 
-<style lang="stylus" scoped>
-
-</style>
+<style lang="stylus" scoped></style>

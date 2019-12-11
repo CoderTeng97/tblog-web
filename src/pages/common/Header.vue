@@ -108,28 +108,12 @@
               <a href="javasciprt:void(0);" class="login">登录</a>
             </router-link>
           </li>
-
-          <!-- <li>
-            <a href="javascript:void(0);">
-              <button class="icon">
-                <span class="iconfont ic-qq">&#xe7a0;</span>
-              </button>
-            </a>
-          </li>
           <li>
-            <a href="javascript:void(0);">
-              <button class="icon">
-                <span class="iconfont ic-weixin">&#xe65d;</span>
-              </button>
-            </a>
+            <router-link to='/login'>
+              <a href="javasciprt:void(0);" class="login">前往V2版本</a>
+            </router-link>
           </li>
-          <li>
-            <a href="javascript:void(0);">
-              <button class="icon">
-                <span class="iconfont ic-weibo">&#xe629;</span>
-              </button>
-            </a>
-          </li>-->
+  
         </ul>
       </el-col>
     </el-row>
